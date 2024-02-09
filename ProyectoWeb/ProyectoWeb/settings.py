@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'ProyectoWebApp',
     'juegos',
     'contacto',
+    'autenticacion',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +139,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "katherin_carina06@hotmail.com"
 EMAIL_HOST_PASSWORD = "katherin1234"
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
