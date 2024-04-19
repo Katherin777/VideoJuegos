@@ -142,18 +142,9 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp-mail.outlook.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "katherin_carina06@hotmail.com"
-EMAIL_HOST_PASSWORD = "katherin1234"
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
 
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-MESSAGE_TAGS = {
-    mensajes_de_error.DEBUG: 'debug',
-    mensajes_de_error.INFO: 'info',
-    mensajes_de_error.SUCCESS: 'success',
-    mensajes_de_error.WARNING: 'warning',
-    mensajes_de_error.ERROR: 'danger',
-    50: "critical",
-}
