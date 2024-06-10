@@ -3,22 +3,25 @@
 {% load static %}
 
 {% block content %}
+<!--<div class="col-sm-7">
+  <input type="text" class="form-control" placeholder="City" aria-label="City">
+</div>-->
 
 
 
-
-{% for juego in juegos %}
+<!--{% for juego in juegos %}-->
 <!--<div><p>
 <h2 style="color: white;">{{juego.nombre}}</h2>
 <p style="color: white;">{{juego.descripcion}}</p>
 <p><img src="{{juego.imagen.url}}"></p>
 </p></div>-->
 
-<div><p>
+
+<!--<div><p>
     <h2 style="color: white;">{{juego.nombre}}</h2>
     <p style="color: white;">{{juego.descripcion}}</p>
     <p><img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{juego.imagen.url}}" alt=""></p>
-    </p></div>
+    </p></div>-->
 
 
 <!--<section class="page-section clearfix">
@@ -37,7 +40,77 @@
       </div>
     </div>
   </section>-->
-{% endfor %}
+<!--{% endfor %}-->
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Juegos</title>
+  <!-- Bootstrap -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <style>
+      body {
+          background-color: #333;
+      }
+
+      h1 {
+          color: white;
+      }
+
+      label, li {
+          color: white;
+      }
+
+      ul {
+          list-style-type: none;
+          padding: 0;
+      }
+
+      img {
+          width: 150px; /* Cambia el ancho según tus necesidades */
+          height: 150px; /* Cambia la altura según tus necesidades */
+          object-fit: cover; /* Ajusta la imagen para que cubra el área sin distorsión */
+      }
+
+      .juego-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+      }
+
+      .juego-info {
+          margin-left: 20px;
+      }
+  </style>
+</head>
+<h1 style="color: white;">Lista de Juegos</h1>
+    
+    <!-- Formulario de búsqueda -->
+    <form method="GET" action="{% url 'Juegos' %}">
+        <label for="nombre" style="color: white;">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ request.GET.nombre }}">
+
+        <label for="genero" style="color: white;">Género:</label>
+        <input type="text" id="genero" name="genero" value="{{ request.GET.genero }}">
+
+        <label for="plataforma" style="color: white;">Plataforma:</label>
+        <input type="text" id="plataforma" name="plataforma" value="{{ request.GET.plataforma }}">
+
+        <button type="submit">Buscar</button>
+    </form>
+    
+    <ul>
+        {% for juego in juegos %}
+            <!--<li style="color: white;">{{ juego.nombre }} - {{ juego.genero }} - {{ juego.plataforma }} - <p><img src="{{juego.imagen.url}}"></p></li>-->
+            <li class="juego-item">
+              <img src="{{ juego.imagen.url }}" alt="{{ juego.nombre }}">
+              <div class="juego-info">
+                  <p>{{ juego.nombre }} - {{ juego.genero }} - {{ juego.plataforma }}</p>
+              </div>
+          </li>
+        {% empty %}
+            <li style="color: white;">No se encontraron juegos.</li>
+        {% endfor %}
+    </ul>
 
 
 {% endblock %}
