@@ -1,0 +1,61 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Juegos</title>
+    <!-- Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #333;
+        }
+  
+        h1 {
+            color: white;
+        }
+  
+        label, li {
+            color: white;
+        }
+  
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+  
+        img {
+            width: 150px; /* Cambia el ancho según tus necesidades */
+            height: 150px; /* Cambia la altura según tus necesidades */
+            object-fit: cover; /* Ajusta la imagen para que cubra el área sin distorsión */
+        }
+  
+        .juego-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+  
+        .juego-info {
+            margin-left: 20px;
+        }
+    </style>
+  </head>
+
+<body>
+    <h1>{{ juego.nombre }}</h1>
+    <p>Género: {{ juego.genero }}</p>
+    <p>Plataforma: {{ juego.plataforma }}</p>
+    <img src="{{ juego.imagen.url }}" alt="{{ juego.nombre }}">
+
+    <!-- Aquí puedes añadir más detalles del juego según sea necesario -->
+
+    <p><a href="{% url 'Home' %}">Volver a la lista de juegos</a></p>
+</body>
+
+
+
+{% endblock %}
