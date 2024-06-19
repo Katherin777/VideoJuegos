@@ -23,5 +23,6 @@ urlpatterns = [
     path('contacto/', include('contacto.urls')),
     path('autenticacion/', include('autenticacion.urls')),
     path('home/', include('home.urls')),
+    path('comentarios/', include('comentarios.urls')),
     path('', include('ProyectoWebApp.urls')), 
 ]

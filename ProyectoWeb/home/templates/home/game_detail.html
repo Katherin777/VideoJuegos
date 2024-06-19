@@ -54,6 +54,32 @@
     <!-- Aquí puedes añadir más detalles del juego según sea necesario -->
 
     <p><a href="{% url 'Home' %}">Volver a la lista de juegos</a></p>
+    <!-- Mostrar comentarios existentes -->
+    {% if user.is_authenticated %}
+    <h2>Comentarios</h2>
+    <ul>
+        {% for comentario in juego.comments.all %}
+            <li>
+                <strong>{{ comentario.usuario.username }}</strong> - {{ comentario.fecha_creacion|date:"F d, Y H:i" }}
+                <br>
+                {{ comentario.contenido }}
+            </li>
+        {% empty %}
+            <li>No hay comentarios todavía.</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <!-- Formulario para agregar comentarios -->
+    {% if user.is_authenticated %}
+        <h2>Agregar Comentario</h2>
+        <form method="post" action="{% url 'add_comment_to_game' juego.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Enviar Comentario</button>
+        </form>
+    {% else %}
+        <p>Por favor <a href="{% url 'logear' %}">inicia sesión</a> para agregar un comentario.</p>
+    {% endif %}
 </body>
 
 

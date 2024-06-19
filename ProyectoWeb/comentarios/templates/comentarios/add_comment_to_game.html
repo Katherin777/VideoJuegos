@@ -1,0 +1,17 @@
+<!-- comentarios/templates/comentarios/add_comment_to_game.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Comentario</title>
+</head>
+<body>
+    <h2>Agregar Comentario</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar Comentario</button>
+    </form>
+</body>
+</html>
