@@ -104,7 +104,7 @@
             <li class="juego-item">
               <img src="{{ juego.imagen.url }}" alt="{{ juego.nombre }}">
               <div class="juego-info">
-                  <p>{{ juego.nombre }} - {{ juego.genero }} - {{ juego.plataforma }}</p>
+                  <p><a href="{% url 'game_detail' juego.id %}">{{ juego.nombre }} - {{ juego.id_genero }} - {{ juego.plataforma }}</p>
               </div>
           </li>
         {% empty %}

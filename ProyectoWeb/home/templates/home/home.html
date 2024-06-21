@@ -12,7 +12,7 @@
               <h2 style="color: white;">Los mas visitados</h1>
                 <ul style="color: white;">
                   {% for juego in juegos10 %}
-                      <li><a href="{% url 'game_detail' juego.id %}">{{ juego.nombre }} - {{ juego.genero }} - {{ juego.plataforma }}</li>
+                      <li><a href="{% url 'game_detail' juego.id %}">{{ juego.nombre }} - {{ juego.id_genero }} - {{ juego.plataforma }}</li>
                   {% endfor %}
               </ul>
           </div>
@@ -20,7 +20,7 @@
             <h2 style="color: white;">Lanzamientos recientes</h1>
             <ul style="color: white;">
                 {% for juegos in juegosRecientes %}
-                    <li>{{ juegos.nombre }} - {{ juegos.genero }} - {{ juegos.creado }}</li>
+                    <li>{{ juegos.nombre }} - {{ juegos.id_genero }} - {{ juegos.creado }}</li>
                 {% endfor %}
             </ul>
         </div>

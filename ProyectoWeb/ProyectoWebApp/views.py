@@ -7,6 +7,6 @@ from django.shortcuts import render, HttpResponse
     #return render(request, "ProyectoWebApp/home.html")
 
 
-def noticias(request):
+#def noticias(request):
     
-    return render(request, "ProyectoWebApp/noticias.html")
+    #return render(request, "ProyectoWebApp/noticias.html")

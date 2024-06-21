@@ -1,0 +1,21 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div><p></p></div>
+<body>
+    <h1>Lista de Noticias</h1>
+    <ul>
+        {% for noticia in noticias %}
+            <li style="color: white;">
+                <a href="{% url 'detalle_noticia' noticia.id %}">{{ noticia.titulo }} - {{ noticia.fecha_publicacion|date:"F d, Y H:i" }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+
+
+{% endblock %}
