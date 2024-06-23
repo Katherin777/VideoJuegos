@@ -1,0 +1,68 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de búsqueda</title>
+    <!-- Bootstrap -->
+    <link href="{% static '/ProyectoWebApp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <!-- Styles -->
+    <link href="{% static '/ProyectoWebApp/css/gestion.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Resultados de búsqueda para "{{ query }}"</h1>
+        <div class="row mt-4">
+            {% if juegos_resultados %}
+                <div class="col-md-12">
+                    <h2>Juegos</h2>
+                    <ul class="list-group mb-4">
+                        {% for juego in juegos_resultados %}
+                            <li class="list-group-item">
+                                <h5>{{ juego.nombre }}</h5>
+                                <p>{{ juego.descripcion }}</p>
+                                <a href="{% url 'game_detail' juego.id %}">Ver más</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if noticias_resultados %}
+                <div class="col-md-12">
+                    <h2>Noticias</h2>
+                    <ul class="list-group">
+                        {% for noticia in noticias_resultados %}
+                            <li class="list-group-item">
+                                <h5>{{ noticia.titulo }}</h5>
+                                <p>{{ noticia.resumen }}</p>
+                                <a href="{% url 'detalle_noticia' noticia.id %}">Leer más</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if not juegos_resultados and not noticias_resultados %}
+                <div class="col-md-12">
+                    <p class="text-center">No se encontraron resultados para "{{ query }}"</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="{% static '/ProyectoWebApp/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static '/ProyectoWebApp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
+
+
+{% endblock %}
