@@ -46,17 +46,17 @@
   </head>
 
 <body>
-    <h1>{{ juego.nombre }}</h1>
-    <p>Género: {{ juego.genero }}</p>
-    <p>Plataforma: {{ juego.plataforma }}</p>
+    <h1 style="color: white;">{{ juego.nombre }}</h1>
+    <p style="color: white;">Género: {{ juego.id_genero }}</p>
+    <p style="color: white;">Plataforma: {{ juego.plataforma }}</p>
     <img src="{{ juego.imagen.url }}" alt="{{ juego.nombre }}">
 
     <!-- Aquí puedes añadir más detalles del juego según sea necesario -->
 
-    <p><a href="{% url 'Home' %}">Volver a la lista de juegos</a></p>
+    <p style="color: white;"><a href="{% url 'Home' %}">Volver a la lista de juegos</a></p>
     <!-- Mostrar comentarios existentes -->
     {% if user.is_authenticated %}
-    <h2>Comentarios</h2>
+    <h2 style="color: white;">Comentarios</h2>
     <ul>
         {% for comentario in juego.comments.all %}
             <li>
@@ -78,7 +78,7 @@
             <button type="submit">Enviar Comentario</button>
         </form>
     {% else %}
-        <p>Por favor <a href="{% url 'logear' %}">inicia sesión</a> para agregar un comentario.</p>
+        <p style="color: white;">Por favor <a href="{% url 'logear' %}">inicia sesión</a> para agregar un comentario.</p>
     {% endif %}
 </body>
 
