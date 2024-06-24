@@ -19,11 +19,11 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Resultados de búsqueda para "{{ query }}"</h1>
+        <h1 class="text-center" style="color: white;">Resultados de búsqueda para "{{ query }}"</h1>
         <div class="row mt-4">
             {% if juegos_resultados %}
                 <div class="col-md-12">
-                    <h2>Juegos</h2>
+                    <h2 style="color: white;">Juegos</h2>
                     <ul class="list-group mb-4">
                         {% for juego in juegos_resultados %}
                             <li class="list-group-item">
@@ -38,7 +38,7 @@
 
             {% if noticias_resultados %}
                 <div class="col-md-12">
-                    <h2>Noticias</h2>
+                    <h2 style="color: white;">Noticias</h2>
                     <ul class="list-group">
                         {% for noticia in noticias_resultados %}
                             <li class="list-group-item">

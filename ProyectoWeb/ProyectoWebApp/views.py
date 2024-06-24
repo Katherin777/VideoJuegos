@@ -31,7 +31,7 @@ def buscar(request):
 
 def detalle_juego(request, id):
     juego = Juego.objects.get(id=id)
-    return render(request, 'juegos/game_detail.html', {'juego': juego})
+    return render(request, 'game_detail.html', {'juego': juego})
 
 def detalle_noticia(request, id):
     noticia = Noticia.objects.get(id=id)

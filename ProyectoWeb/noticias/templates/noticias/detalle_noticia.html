@@ -5,10 +5,10 @@
 {% block content %}
 
 <body>
-    <h1>{{ noticia.titulo }}</h1>
-    <p>{{ noticia.contenido }}</p>
-    <p>Juego: {{ noticia.juego.nombre }}</p>
-    <p>Fecha de publicación: {{ noticia.fecha_publicacion|date:"F d, Y H:i" }}</p>
+    <h1 style="color: white;">{{ noticia.titulo }}</h1>
+    <p style="color: white;">{{ noticia.contenido }}</p>
+    <p style="color: white;">Juego: {{ noticia.juego.nombre }}</p>
+    <p style="color: white;">Fecha de publicación: {{ noticia.fecha_publicacion|date:"F d, Y H:i" }}</p>
     <a href="{% url 'Noticias' %}">Volver a la lista de noticias</a>
 </body>
 
