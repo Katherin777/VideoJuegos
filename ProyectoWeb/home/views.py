@@ -17,9 +17,9 @@ def home(request):
 #def list_games(request):
    # juegosLista = Juego.objects.all().order_by('id')[:10]  # Obtener los primeros 10 juegos ordenados por fecha más reciente
    #  return render(request, 'home/home.html', {'juegosLista': juegosLista})
-def game_detail(request, id):
-    juego = get_object_or_404(Juego, pk=id)
-    context = {
-        'juego': juego
-    }
-    return render(request, 'home/game_detail.html', context)
+#def game_detail(request, id):
+ #   juego = get_object_or_404(Juego, pk=id)
+  #  context = {
+   #     'juego': juego
+   # }
+    #return render(request, 'home/game_detail.html', context)

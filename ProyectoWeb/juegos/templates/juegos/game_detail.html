@@ -1,0 +1,87 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Juegos</title>
+    <!-- Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #333;
+        }
+  
+        h1 {
+            color: white;
+        }
+  
+        label, li {
+            color: white;
+        }
+  
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+  
+        img {
+            width: 150px; /* Cambia el ancho según tus necesidades */
+            height: 150px; /* Cambia la altura según tus necesidades */
+            object-fit: cover; /* Ajusta la imagen para que cubra el área sin distorsión */
+        }
+  
+        .juego-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+  
+        .juego-info {
+            margin-left: 20px;
+        }
+    </style>
+  </head>
+
+<body>
+    <h1 style="color: white;">{{ juego.nombre }}</h1>
+    <p style="color: white;">Género: {{ juego.id_genero }}</p>
+    <p style="color: white;">Plataforma: {{ juego.plataforma }}</p>
+    <img src="{{ juego.imagen.url }}" alt="{{ juego.nombre }}">
+
+    <!-- Aquí puedes añadir más detalles del juego según sea necesario -->
+
+    <p style="color: white;"><a href="{% url 'Home' %}">Volver a la lista de juegos</a></p>
+    <!-- Mostrar comentarios existentes -->
+    {% if user.is_authenticated %}
+    <h2 style="color: white;">Comentarios</h2>
+    <ul>
+        {% for comentario in juego.comments.all %}
+            <li>
+                <strong>{{ comentario.usuario.username }}</strong> - {{ comentario.fecha_creacion|date:"F d, Y H:i" }}
+                <br>
+                {{ comentario.contenido }}
+            </li>
+        {% empty %}
+            <li>No hay comentarios todavía.</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <!-- Formulario para agregar comentarios -->
+    {% if user.is_authenticated %}
+        <h2>Agregar Comentario</h2>
+        <form method="post" action="{% url 'add_comment_to_game' juego.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Enviar Comentario</button>
+        </form>
+    {% else %}
+        <p style="color: white;">Por favor <a href="{% url 'logear' %}">inicia sesión</a> para agregar un comentario.</p>
+    {% endif %}
+</body>
+
+
+
+{% endblock %}

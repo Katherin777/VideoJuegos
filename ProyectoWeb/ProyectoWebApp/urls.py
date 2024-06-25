@@ -20,8 +20,6 @@ from ProyectoWebApp import views
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
-   # path('home', views.home, name="Home"),
-   # path('noticias', views.noticias, name="Noticias"),
     path('buscar', views.buscar, name="buscar"),
 
 ]

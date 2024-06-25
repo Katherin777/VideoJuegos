@@ -21,6 +21,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('', views.noticias, name="Noticias"),
-    path('<int:noticia_id>/', views.detalle_noticia, name='detalle_noticia'),
+    path('id=<int:noticia_id>', views.detalle_noticia, name='detalle_noticia'),
 ]
 

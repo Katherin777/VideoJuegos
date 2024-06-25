@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http.request import HttpRequest
 from juegos.models import Juego
 from django.db.models import Q
@@ -25,3 +25,10 @@ def juegos(request: HttpRequest):
     juegos = Juego.objects.filter(query)
 
     return render(request, "juegos/juegos.html", {"juegos": juegos})
+
+def game_detail(request, id):
+    juego = get_object_or_404(Juego, pk=id)
+    context = {
+        'juego': juego
+    }
+    return render(request, 'juegos/game_detail.html', context)
