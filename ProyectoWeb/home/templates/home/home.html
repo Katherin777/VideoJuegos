@@ -11,7 +11,7 @@
         <div class="container2">
               <h2 style="color: white;">Los mas visitados</h2>
                 <ul style="color: white;">
-                  {% for juego in juegos10 %}
+                  {% for juego in juegosMasVisualizados %}
                       <li><a href="{% url 'game_detail' juego.id %}">{{ juego.nombre }} - {{ juego.id_genero }} - {{ juego.plataforma }}</a></li>
                   {% endfor %}
               </ul>

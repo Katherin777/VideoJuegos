@@ -18,3 +18,15 @@ class Juego(models.Model):
     
     def __str__(self):
         return self.nombre
+
+class ClickCount(models.Model):
+    juego = models.OneToOneField(Juego, on_delete=models.CASCADE, related_name='click_count')
+    count = models.IntegerField(default=0)
+
+    class Meta:
+        verbose_name = 'Click Count'
+        verbose_name_plural = 'Click Counts'
+
+    def __str__(self):
+        #return f"{self.juego.nombre} - {self.count} clicks"
+         return f"Juego ID: {self.juego.id} - {self.juego.nombre} - {self.count} clicks"
