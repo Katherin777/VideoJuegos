@@ -37,3 +37,6 @@ def game_detail(request, id):
         'juego': juego
     }
     return render(request, 'juegos/game_detail.html', context)
+
+
+

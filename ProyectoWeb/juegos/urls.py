@@ -17,10 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from . import api_views
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('', views.juegos, name="Juegos"),
     path('id=<int:id>', views.game_detail, name='game_detail'),
+
+    # Vistas API
+    path('api/juegos/', api_views.juegos_list, name='juegos_list'),
+    path('api/juegos/<int:id>', api_views. game_detail_api, name=' game_detail_api'),
+    
 ]
 
