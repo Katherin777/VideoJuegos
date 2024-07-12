@@ -1,7 +1,9 @@
 from django.shortcuts import render, HttpResponse
 from juegos.models import Juego
 from noticias.models import Noticia  # Asegúrate de importar tus modelos
-
+from rest_framework.decorators import api_view
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 def buscar(request):
     query = request.GET.get('q')
     juegos_resultados = []
@@ -25,4 +27,15 @@ def detalle_juego(request, id):
 def detalle_noticia(request, id):
     noticia = Noticia.objects.get(id=id)
     return render(request, 'detalle_noticia.html', {'noticia': noticia})
+
+@api_view(['GET'])
+def juego_detalle_api(request, id):
+    juego = get_object_or_404(Juego, pk=id)
+    data = {
+        'nombre': juego.nombre,
+        'genero': juego.id_genero.nombre,  # Asumiendo que tienes una relación con un modelo Género
+        'plataforma': juego.plataforma.nombre,  # Asumiendo que tienes una relación con un modelo Plataforma
+        'imagen': juego.imagen.url,
+    }
+    return JsonResponse(data)
 
