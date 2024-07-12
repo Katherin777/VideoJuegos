@@ -38,5 +38,12 @@ def game_detail(request, id):
     }
     return render(request, 'juegos/game_detail.html', context)
 
+def imprimir_juego(request, id):
+    juego = get_object_or_404(Juego, pk=id)
+    context = {
+        'juego': juego,
+    }
+    return render(request, 'juegos/imprimir_juego.html', context)
+
 
 

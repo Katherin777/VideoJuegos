@@ -22,11 +22,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('', views.juegos, name="Juegos"),
-    path('id=<int:id>', views.game_detail, name='game_detail'),
+    path('id=<int:id>/', views.game_detail, name='game_detail'),
+    path('id=<int:id>/imprimir/', views.imprimir_juego, name='imprimir_juego'),
 
     # Vistas API
-    path('api/juegos/', api_views.juegos_list, name='juegos_list'),
-    path('api/juegos/<int:id>', api_views. game_detail_api, name=' game_detail_api'),
+    path('api/v1/juegos/', api_views.juegos_list, name='juegos_list'),
+    path('api/v1/juegos/<int:id>', api_views. game_detail_api, name=' game_detail_api'),
     
 ]
 

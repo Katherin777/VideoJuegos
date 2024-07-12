@@ -24,3 +24,33 @@ def add_comment_to_game(request, id):
 
     return render(request, 'comentarios/add_comment_to_game.html', {'form': form})
 
+@login_required
+def edit_comment(request, id):
+    comentario = get_object_or_404(Comentarios, pk=id)
+
+    if request.user != comentario.usuario:
+        return redirect('game_detail', id=comentario.juego.id)  # Redirige si el usuario no es el autor
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comentario)
+        if form.is_valid():
+            form.save()
+            return redirect('game_detail', id=comentario.juego.id)
+    else:
+        form = CommentForm(instance=comentario)
+
+    return render(request, 'comentarios/edit_comment.html', {'form': form})
+
+@login_required
+def delete_comment(request, id):
+    comentario = get_object_or_404(Comentarios, pk=id)
+
+    if request.user != comentario.usuario:
+        return redirect('game_detail', id=comentario.juego.id)  # Redirige si el usuario no es el autor
+
+    if request.method == 'POST':
+        comentario.delete()
+        return redirect('game_detail', id=comentario.juego.id)
+
+    return render(request, 'comentarios/delete_comment.html', {'comentario': comentario})
+

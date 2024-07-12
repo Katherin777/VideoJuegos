@@ -1,0 +1,44 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<head>
+    <title>Detalles del Juego para Impresión</title>
+    <style>
+        /* Estilos adicionales para la impresión */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        .juego-detail {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 20px;
+        }
+        .juego-detail img {
+            max-width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="juego-detail">
+        <h1>{{ juego.nombre }}</h1>
+        <p><strong>Plataforma:</strong> {{ juego.plataforma }}</p>
+        <p><strong>Género:</strong> {{ juego.id_genero }}</p>
+        <p><strong>Descripción:</strong> {{ juego.descripcion }}</p>
+    </div>
+    <script>
+        // JavaScript opcional para imprimir automáticamente al cargar la página
+        window.onload = function() {
+            window.print();
+        }
+    </script>
+</body>
+
+
+
+{% endblock %}

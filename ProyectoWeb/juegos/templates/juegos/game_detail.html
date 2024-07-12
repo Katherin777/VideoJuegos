@@ -63,6 +63,11 @@
                 <strong>{{ comentario.usuario.username }}</strong> - {{ comentario.fecha_creacion|date:"F d, Y H:i" }}
                 <br>
                 {{ comentario.contenido }}
+                {% if user == comentario.usuario %}
+                    <br>
+                    <a href="{% url 'edit_comment' comentario.id %}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="{% url 'delete_comment' comentario.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                {% endif %}
             </li>
         {% empty %}
             <li>No hay comentarios todavía.</li>
@@ -80,6 +85,16 @@
     {% else %}
         <p style="color: white;">Por favor <a href="{% url 'logear' %}">inicia sesión</a> para agregar un comentario.</p>
     {% endif %}
+
+        <!-- Botón para imprimir los detalles del juego -->
+        <button onclick="imprimirDetalles()">Imprimir Detalles</button>
+
+        <script>
+            // Función para imprimir los detalles del juego
+            function imprimirDetalles() {
+                window.print();
+            }
+        </script>
 </body>
 
 

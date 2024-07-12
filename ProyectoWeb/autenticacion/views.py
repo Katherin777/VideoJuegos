@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib.auth import login, logout, authenticate 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 # Create your views here.
@@ -53,3 +54,12 @@ def logear(request):
                 messages.error(request, form.error_messages[msg])
     form=AuthenticationForm()
     return render(request,"login/login.html",{"form":form})
+
+@login_required
+def eliminar_usuario(request):
+    if request.method == "POST":
+        usuario = request.user
+        usuario.delete()
+        messages.success(request, "Tu cuenta ha sido eliminada exitosamente.")
+        return redirect('Home')
+    return render(request, "eliminar_usuario/eliminar_usuario.html")
