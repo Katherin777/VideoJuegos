@@ -16,11 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . import views
+from . import views, api_views
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('', views.noticias, name="Noticias"),
     path('id=<int:noticia_id>', views.detalle_noticia, name='detalle_noticia'),
+
+        # Vistas API
+    path('api/v1/', api_views.listar_noticias, name='listar_noticias'),
+    path('api/v1/<int:id>/', api_views.noticia_detalle, name='noticia_detalle'),
+    path('api/v1/ ', api_views.crear_noticia, name='crear_noticia'),
+    path('api/v1/  ', api_views.actualizar_noticia, name='actualizar_noticia'),
+    path('api/v1/<int:id>/eliminar/', api_views.eliminar_noticia, name='eliminar_noticia'),
 ]
 

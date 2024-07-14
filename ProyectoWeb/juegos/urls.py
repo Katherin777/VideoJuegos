@@ -26,8 +26,10 @@ urlpatterns = [
     path('id=<int:id>/imprimir/', views.imprimir_juego, name='imprimir_juego'),
 
     # Vistas API
-    path('api/v1/juegos/', api_views.juegos_list, name='juegos_list'),
-    path('api/v1/juegos/<int:id>', api_views. game_detail_api, name=' game_detail_api'),
+    path('api/v1/', api_views.juegos_list, name='juegos_list'),
+    path('api/v1/<int:id>', api_views. game_detail_api, name=' game_detail_api'),
+    path('api/v1/crear', api_views.juego_crear_api, name='juego_crear_api'),
+    path('api/v1/actualizar', api_views.juego_actualizar_api, name='juego_actualizar_api'),
     
 ]
 

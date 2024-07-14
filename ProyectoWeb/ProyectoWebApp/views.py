@@ -1,9 +1,11 @@
 from django.shortcuts import render, HttpResponse
 from juegos.models import Juego
+from juegos.serializers import serializers
 from noticias.models import Noticia  # Asegúrate de importar tus modelos
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
+from rest_framework import status
 def buscar(request):
     query = request.GET.get('q')
     juegos_resultados = []
@@ -38,4 +40,20 @@ def juego_detalle_api(request, id):
         'imagen': juego.imagen.url,
     }
     return JsonResponse(data)
+
+@api_view(['POST'])
+def juego_crear_api(request):
+    if request.method == 'POST':
+        serializer = serializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            data = {
+                'nombre': serializer.data['nombre'],
+                'genero': serializer.data['id_genero'],
+                'plataforma': serializer.data['plataforma'],
+                'imagen': serializer.data['imagen'],
+            }
+            return JsonResponse(data, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
