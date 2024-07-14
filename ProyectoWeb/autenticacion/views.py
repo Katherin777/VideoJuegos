@@ -3,6 +3,9 @@ from django.views.generic import View
 from django.contrib.auth import login, logout, authenticate 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .forms import UserCreationFormWithEmail
+from django.contrib.messages import error, success
+
 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 # Create your views here.
@@ -11,18 +14,25 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 class VRegistro(View):
 
     def get(self, request):
-        form=UserCreationForm()
+        form = UserCreationFormWithEmail()
         return render(request, "autenticacion/autenticacion.html", {"form":form})
     
     def post(self, request):
-        form=UserCreationForm(request.POST)
+        #form=UserCreationForm(request.POST)
+        form = UserCreationFormWithEmail(request.POST)
 
         if form.is_valid():
 
-            usuario=form.save()
+            #usuario=form.save()
 
-            login(request, usuario)
+            #login(request, usuario)
 
+            #return redirect('Home')
+            user = form.save(commit=False)
+            user.email = form.cleaned_data['email']
+            user.save()
+            login(request, user)
+            success(request, "¡Registro exitoso!")
             return redirect('Home')
 
         else:
@@ -30,6 +40,7 @@ class VRegistro(View):
                 messages.error(request, form.error_messages[msg])
 
             return render(request,"autenticacion/autenticacion.html",{"form":form})
+
         
 
 def cerrar_sesion(request):
